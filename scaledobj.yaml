@@ -1,0 +1,20 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  name: keda-web
+spec:
+  scaleTargetRef:
+    kind: Deployment
+    name: webserver-deployment
+  minReplicaCount: 1
+  maxReplicaCount: 4
+  triggers:
+  - type: prometheus
+    metadata:
+      serverAddress: https://us2.app.sysdig.com/prometheus
+      metricName: nginx_connections_accepted
+      query: sum(nginx_connections_active)
+      threshold: "6"
+      authModes: "bearer"
+    authenticationRef:
+      name: keda-prom-creds
