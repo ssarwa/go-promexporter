@@ -1,20 +1,22 @@
 apiVersion: keda.sh/v1alpha1
 kind: ScaledObject
 metadata:
-  name: keda-web
+  name: keda-http
 spec:
   scaleTargetRef:
     kind: Deployment
-    name: webserver-deployment
+    name: httpmetrics-deployment
+  pollingInterval: 15
+  cooldownPeriod:  30
   minReplicaCount: 1
-  maxReplicaCount: 4
+  maxReplicaCount: 10
   triggers:
   - type: prometheus
     metadata:
       serverAddress: https://us2.app.sysdig.com/prometheus
-      metricName: nginx_connections_accepted
-      query: sum(nginx_connections_active)
-      threshold: "6"
-      authModes: "bearer"
+      metricName: http_requests_total
+      query: sum(rate(http_requests_total{path="/", container_name="httpmetrics"}[2m]))
+      threshold: '3'
+      authModes: 'bearer'
     authenticationRef:
       name: keda-prom-creds
