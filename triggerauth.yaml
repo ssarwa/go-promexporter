@@ -1,0 +1,9 @@
+apiVersion: keda.sh/v1alpha1
+kind: ClusterTriggerAuthentication
+metadata:
+  name: keda-prom-creds
+spec:
+  secretTargetRef:
+  - parameter: bearerToken
+    name: keda-prom-secret
+    key: bearerToken

@@ -20,3 +20,4 @@ spec:
       authModes: 'bearer'
     authenticationRef:
       name: keda-prom-creds
+      kind: ClusterTriggerAuthentication
