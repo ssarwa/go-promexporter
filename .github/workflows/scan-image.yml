@@ -59,7 +59,7 @@ jobs:
             docker://${REGISTRY_HOST}/${{ secrets.REGISTRY_USER }}/${IMAGE_NAME}:${IMAGE_TAG} \
             --console-log \
             --dbpath=${GITHUB_WORKSPACE}/cache/db/ \
-            --cachepath=${GITHUB_WORKSPACE}/cache/scanner-cache/ || true
+            --cachepath=${GITHUB_WORKSPACE}/cache/scanner-cache/
 
       - name: Login to the registry
         uses: docker/login-action@v2
