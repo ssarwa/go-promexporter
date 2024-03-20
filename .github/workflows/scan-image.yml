@@ -38,6 +38,8 @@ jobs:
           sysdig-secure-token: ${{ secrets.SECURE_API_TOKEN }}
           sysdig-secure-url: ${{ env.SYSDIG_SECURE_ENDPOINT}}
           cli-scanner-version: 1.9.0
+          stop-on-failed-policy-eval: true
+          stop-on-processing-error: true
       
       # - name: Setup cache
       #   uses: actions/cache@v3
