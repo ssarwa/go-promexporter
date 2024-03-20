@@ -34,8 +34,10 @@ jobs:
       - name: Scan image
         uses: sysdiglabs/scan-action@v4
         with:
-          image-tag: docker://${REGISTRY_HOST}/${{ secrets.REGISTRY_USER }}/${IMAGE_NAME}:${IMAGE_TAG}
+          image-tag: ${{ env.REGISTRY_HOST }}/${{ secrets.REGISTRY_USER }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
           sysdig-secure-token: ${{ secrets.SECURE_API_TOKEN }}
+          sysdig-secure-url: ${{ env.SYSDIG_SECURE_ENDPOINT}}
+          cli-scanner-version: 1.9.0
       
       # - name: Setup cache
       #   uses: actions/cache@v3
