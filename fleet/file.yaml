@@ -4,8 +4,8 @@ metadata:
   name: deployment-placement
 spec:
   resourceSelectors:
-    - group: apps
+    - group: ""
       version: v1
-      kind: Deployment
+      kind: apptest-ns
   policy:
     placementType: PickAll
