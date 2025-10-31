@@ -1,0 +1,11 @@
+apiVersion: placement.kubernetes-fleet.io/v1
+kind: ClusterResourcePlacement
+metadata:
+  name: deployment-placement
+spec:
+  resourceSelectors:
+    - group: apps
+      version: v1
+      kind: Deployment
+  policy:
+    placementType: PickAll
