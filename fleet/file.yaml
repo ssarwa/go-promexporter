@@ -5,7 +5,8 @@ metadata:
 spec:
   resourceSelectors:
     - group: ""
+      kind: Namespace
       version: v1
-      kind: apptest-ns
+      name: apptest-ns
   policy:
     placementType: PickAll
