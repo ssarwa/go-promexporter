@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: testwf
+  namespace: apptest-ns
+  labels:
+    app.kubernetes.io/name: testwf
+    kubernetes.azure.com/generator: devhub
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: testwf
+  ports:
+    - protocol: TCP
+      port: 9000
+      targetPort: 9000
